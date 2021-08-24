@@ -1,5 +1,14 @@
 package com.example.demo.model;
 
+import javax.annotation.Generated;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,13 +18,20 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table
 public class Vendas {
 
-  private int id_venda;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id_venda;
+
   private String data_venda;
   private double valor;
-  private int id_vendedor;
-  private String nome_vendedor;
+
+  @ManyToOne
+  @JoinColumn(name = "id_vendedor")
+  private Vendedor ven;
 
   // public void setId_venda(int id_venda) {
   // this.id_venda = id_venda;
