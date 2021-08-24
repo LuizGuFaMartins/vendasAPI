@@ -29,9 +29,9 @@ public class Vendas {
   private String data_venda;
   private double valor;
 
-  @ManyToOne
-  @JoinColumn(name = "id_vendedor")
-  private Vendedor ven;
+  // @ManyToOne
+  // @JoinColumn(name = "id_vendedor")
+  // private Vendedor ven;
 
   // public void setId_venda(int id_venda) {
   // this.id_venda = id_venda;

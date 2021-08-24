@@ -8,5 +8,6 @@ public interface VendasRepository extends CrudRepository<Vendas, Long> {
 }
 
 // import org.springframework.data.jpa.repository.JpaRepository;
+
 // public interface VendasRepository extends JpaRepository<Vendas, Long> {
 // }

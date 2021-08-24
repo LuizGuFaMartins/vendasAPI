@@ -22,10 +22,12 @@ public class vendasController {
     return vendasRepository.findAll();
   }
 
-  // @PostMapping("/")
-  // public Vendas venda(@RequestBody Vendas vendas) {
-  // return this.vendasRepository.save(vendas);
-  // }
+  @PostMapping("/")
+  public Vendas venda(@RequestBody Vendas vendas) {
+    this.vendasRepository.save(vendas);
+    return vendas;
+  }
+
 }
 
 // vend.setId_venda(1L);

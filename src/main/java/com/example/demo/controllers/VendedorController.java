@@ -20,6 +20,11 @@ public class VendedorController {
     return vendedorRepository.findAll();
   }
 
+  // @GetMapping("/")
+  // public String venda() {
+  // return "Hello World";
+  // }
+
   // @PostMapping("/")
   // public Vendas venda(@RequestBody Vendas vendas) {
   // return this.vendasRepository.save(vendas);
