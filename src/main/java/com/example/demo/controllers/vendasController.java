@@ -1,7 +1,12 @@
 package com.example.demo.controllers;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.example.demo.model.Vendas;
+import com.example.demo.model.Vendedor;
 import com.example.demo.repository.VendasRepository;
+import com.example.demo.repository.VendedorRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,15 +22,26 @@ public class vendasController {
   @Autowired
   private VendasRepository vendasRepository;
 
+  @Autowired
+  private VendedorRepository vendedorRepository;
+
   @GetMapping("/")
   public Iterable<Vendas> venda() {
     return vendasRepository.findAll();
   }
 
   @PostMapping("/")
-  public Vendas venda(@RequestBody Vendas vendas) {
+  public List<Vendedor> venda(@RequestBody Vendas vendas) {
+    Long id;
+    id = vendas.getVen().getId_vendedor();
+    Optional<Vendedor> vendedor = this.vendedorRepository.findById(id);
+
+    if (vendedor.isPresent()) {
+      vendas.getVen().setTotal_vendas();
+    }
+
     this.vendasRepository.save(vendas);
-    return vendas;
+    return vendedorRepository.findAll();
   }
 
 }

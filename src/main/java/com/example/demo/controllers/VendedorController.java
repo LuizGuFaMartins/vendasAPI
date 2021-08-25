@@ -5,6 +5,8 @@ import com.example.demo.repository.VendedorRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,13 +22,16 @@ public class VendedorController {
     return vendedorRepository.findAll();
   }
 
-  // @GetMapping("/")
-  // public String venda() {
-  // return "Hello World";
+  // @PostMapping("/")
+  // public Vendedor vendendo() {
+  // Vendedor vendedor = new Vendedor();
+  // vendedor.setNome_vendedor("Cleiton");
+  // return vendedor;
   // }
 
-  // @PostMapping("/")
-  // public Vendas venda(@RequestBody Vendas vendas) {
-  // return this.vendasRepository.save(vendas);
-  // }
+  @PostMapping("/")
+  public Vendedor venda(@RequestBody Vendedor vendedor) {
+    this.vendedorRepository.save(vendedor);
+    return vendedor;
+  }
 }
