@@ -3,8 +3,10 @@ package com.example.demo.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demo.model.RendVendedor;
 import com.example.demo.model.Vendas;
 import com.example.demo.model.Vendedor;
+import com.example.demo.repository.RendVendedorRepository;
 import com.example.demo.repository.VendasRepository;
 import com.example.demo.repository.VendedorRepository;
 
@@ -26,6 +28,9 @@ public class vendasController {
   @Autowired
   private VendedorRepository vendedorRepository;
 
+  @Autowired
+  private RendVendedorRepository rendVendedorRepository;
+
   @GetMapping("/")
   public Iterable<Vendas> venda() {
     return vendasRepository.findAll();
@@ -35,11 +40,13 @@ public class vendasController {
   public List<Vendedor> venda(@RequestBody Vendas vendas) {
     Long id;
     id = vendas.getVen().getId_vendedor();
-    Optional<Vendedor> vendedor = this.vendedorRepository.findById(id);
+    List<RendVendedor> rendVendedor = this.rendVendedorRepository.findAll();
 
-    if (vendedor.isPresent()) {
-      vendedor.get().setTotal_vendas();
-      vendedorRepository.save(vendedor.get());
+    for (int i = 0; i < rendVendedor.size(); i++) {
+      if (rendVendedor.get(i).getVen().getId_vendedor() == id) {
+        rendVendedor.get(i).setTotal_vendas();
+        rendVendedorRepository.save(rendVendedor.get(i));
+      }
     }
 
     this.vendasRepository.save(vendas);
@@ -54,3 +61,19 @@ public class vendasController {
 // vend.getVen().setId_vendedor(1L);
 // vend.getVen().setNome_vendedor("Cleber");
 // vend.getVen().setTotal_vendas(0);
+
+// MIlagre
+// @PostMapping("/")
+// public List<Vendedor> venda(@RequestBody Vendas vendas) {
+// Long id;
+// id = vendas.getVen().getId_vendedor();
+// Optional<Vendedor> vendedor = this.vendedorRepository.findById(id);
+
+// if (vendedor.isPresent()) {
+// vendedor.get().setTotal_vendas();
+// vendedorRepository.save(vendedor.get());
+// }
+
+// this.vendasRepository.save(vendas);
+// return vendedorRepository.findAll();
+// }

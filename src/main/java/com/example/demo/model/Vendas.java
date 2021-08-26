@@ -36,7 +36,11 @@ public class Vendas {
   @JoinColumn(nullable = false)
   private Vendedor ven;
 
-  public void upTotal_vendas() {
-    ven.setTotal_vendas(ven.getTotal_vendas() + 1);
-  }
+  // @ManyToOne
+  // @JoinColumn(nullable = false)
+  // private RendVendedor rendVen;
+
+  // public void upTotal_vendas() {
+  // ven.setTotal_vendas(ven.getTotal_vendas() + 1);
+  // }
 }

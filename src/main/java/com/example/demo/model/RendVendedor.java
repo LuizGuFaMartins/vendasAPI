@@ -1,13 +1,11 @@
 package com.example.demo.model;
 
-import java.util.List;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -21,19 +19,22 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table
-public class Vendedor {
+public class RendVendedor {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id_vendedor;
+  private long rendId;
 
-  @Column(length = 50, nullable = false)
-  private String nome_vendedor;
+  @OneToOne
+  @JoinColumn(nullable = false)
+  private Vendedor ven;
 
-  // private int total_vendas;
+  private int total_vendas;
 
-  // public void setTotal_vendas() {
-  // this.total_vendas = total_vendas + 1;
-  // }
+  private double mdiaria_vendas;
+
+  public void setTotal_vendas() {
+    this.total_vendas = total_vendas + 1;
+  }
 
 }
