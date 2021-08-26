@@ -9,6 +9,7 @@ import com.example.demo.repository.VendasRepository;
 import com.example.demo.repository.VendedorRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,7 +38,8 @@ public class vendasController {
     Optional<Vendedor> vendedor = this.vendedorRepository.findById(id);
 
     if (vendedor.isPresent()) {
-      vendas.getVen().setTotal_vendas();
+      vendedor.get().setTotal_vendas();
+      vendedorRepository.save(vendedor.get());
     }
 
     this.vendasRepository.save(vendas);

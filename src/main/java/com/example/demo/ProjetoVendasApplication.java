@@ -11,25 +11,25 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProjetoVendasApplication implements CommandLineRunner {
+public class ProjetoVendasApplication {// implements CommandLineRunner
 
-	@Autowired
-	private VendedorRepository vendedorRepository;
+	// @Autowired
+	// private VendedorRepository vendedorRepository;
 
-	@Autowired
-	private VendasRepository vendasRepository;
+	// @Autowired
+	// private VendasRepository vendasRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoVendasApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		Vendedor vendedor = new Vendedor(null, "Gabriel", 0);
-		Vendas vendas = new Vendas(null, "07/03/2021", 89.90, vendedor);
+	// @Override
+	// public void run(String... args) throws Exception {
+	// Vendedor vendedor = new Vendedor(null, "João", 0);
+	// Vendas vendas = new Vendas(null, "07/03/2021", 89.90, vendedor);
 
-		vendedorRepository.save(vendedor);
-		vendasRepository.save(vendas);
-	}
+	// vendedorRepository.save(vendedor);
+	// vendasRepository.save(vendas);
+	// }
 
 }
