@@ -1,0 +1,15 @@
+
+=> DIFICULDADES
+  Tive algumas dificuldas na implementação da API e a conecção com o banco de dados, além também de não
+conseguir implementar a média diária da exata forma pedida, principalmente devido a pouca experiência que tenho
+com o spring boot. 
+
+=> IMPLEMENTAÇÃO
+  Minha implementação se baseia em três classes entidades (Apresentadas no diagrama): Vendas, 
+Vendedor e a RendVendedor (Rendimendo vendedor) sendo que ao instânciar um Vendedor, intancia-se 
+também uma RendVendedor. 
+
+  O total de vendas e média são calculados automáticamente, assim que for gerado um objeto Vendas.
+
+  Para o cálculo da média diária utilizei como base o total de vendas e as vendas em cada dia, 
+dividindo o total de vendas pela quantidade de dias que algum vendedor realizou uma venda.
