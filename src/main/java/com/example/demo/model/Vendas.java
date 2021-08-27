@@ -1,9 +1,5 @@
 package com.example.demo.model;
 
-import java.sql.Date;
-
-import javax.annotation.Generated;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,12 +31,4 @@ public class Vendas {
   @ManyToOne
   @JoinColumn(nullable = false)
   private Vendedor ven;
-
-  // @ManyToOne
-  // @JoinColumn(nullable = false)
-  // private RendVendedor rendVen;
-
-  // public void upTotal_vendas() {
-  // ven.setTotal_vendas(ven.getTotal_vendas() + 1);
-  // }
 }

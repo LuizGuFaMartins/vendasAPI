@@ -1,7 +1,6 @@
 package com.example.demo.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.example.demo.model.RendVendedor;
 import com.example.demo.model.Vendas;
@@ -11,7 +10,7 @@ import com.example.demo.repository.VendasRepository;
 import com.example.demo.repository.VendedorRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,10 +36,15 @@ public class vendasController {
   }
 
   @PostMapping("/")
-  public List<Vendedor> venda(@RequestBody Vendas vendas) {
+  public List<RendVendedor> venda(@RequestBody Vendas vendas) {
+    this.vendasRepository.save(vendas);
+
     Long id;
     id = vendas.getVen().getId_vendedor();
+
     List<RendVendedor> rendVendedor = this.rendVendedorRepository.findAll();
+    List<Vendas> vend = this.vendasRepository.findAll();
+    List<Vendedor> vendedor = this.vendedorRepository.findAll();
 
     for (int i = 0; i < rendVendedor.size(); i++) {
       if (rendVendedor.get(i).getVen().getId_vendedor() == id) {
@@ -49,8 +53,23 @@ public class vendasController {
       }
     }
 
-    this.vendasRepository.save(vendas);
-    return vendedorRepository.findAll();
+    int cont = 0;
+    String data = "";
+
+    for (int j = 0; j < vendedor.size(); j++) {
+      for (int i = 0; i < vend.size(); i++) {
+        if (vend.get(i).getVen().getId_vendedor() == vendedor.get(j).getId_vendedor()
+            && vend.get(i).getData_venda() != data) {
+          cont++;
+        }
+        data = vend.get(i).getData_venda();
+      }
+      rendVendedor.get(j).setMdiaria_vendas(cont);
+      rendVendedorRepository.save(rendVendedor.get(j));
+      cont = 0;
+    }
+
+    return rendVendedorRepository.findAll();
   }
 
 }

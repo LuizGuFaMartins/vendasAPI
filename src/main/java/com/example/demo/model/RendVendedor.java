@@ -33,8 +33,24 @@ public class RendVendedor {
 
   private double mdiaria_vendas;
 
+  public RendVendedor(Vendedor vendedor, int total, double media) {
+    ven = vendedor;
+    total_vendas = total;
+    mdiaria_vendas = media;
+  }
+
   public void setTotal_vendas() {
     this.total_vendas = total_vendas + 1;
+  }
+
+  public void setMdiaria_vendas(int cont) {
+    float calc = total_vendas;
+    if (calc == 0 && cont == 0) {
+      this.mdiaria_vendas = 0;
+    } else {
+      this.mdiaria_vendas = calc / cont;
+    }
+
   }
 
 }
